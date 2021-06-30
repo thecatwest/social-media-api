@@ -14,11 +14,10 @@ const thoughtController = {
 
      //get an individual thought by id
      getOneThought({ params }, res) {
-          Thought.findOne({ _id: params.id })
-          .select('-__v')
-          .then(ThoughtsDb => {
+        Thought.findOne({_id: params.id})
+        .then(ThoughtsDb => {
                if(!ThoughtsDb) {
-                   return res.status(404).json({ message: "No user with that ID exists. Try again." });
+                return res.status(404).json( {message: "No user with that ID exists. Try again." } );
                }
                res.json(ThoughtsDb);
           })
@@ -42,7 +41,7 @@ const thoughtController = {
             res.json(UsersDb);
         })
         .catch(err => res.json(err));
-    },,
+    },
 
      // update (put) a thought by id
      updateThought({ params, body }, res) {
