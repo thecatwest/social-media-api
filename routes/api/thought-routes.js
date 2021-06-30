@@ -12,23 +12,13 @@ const {
 
 
 // api route for all thoughts
-router
-     .route('/')
-     .get(getAllThoughts)
-     .post(createThought)
+router.route('/').get(getAllThoughts).post(createThought)
 
 // api routes for single thought
-router
-     .route('/:id')
-     .get(getOneThought)
-     .put(updateThought)
-     .delete(deleteThought)
+router.route('/:id').get(getOneThought).put(updateThought).delete(deleteThought)
 
 // api route for reactions
-router
-     .route('/:thoughtId/reactions')
-     .post(createReaction)
-     .delete(deleteReaction)
+router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction)
 
 
 module.exports = router;

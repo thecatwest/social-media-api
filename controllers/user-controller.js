@@ -4,12 +4,20 @@ const userController = {
   // get all available users
   getAllUsers(req, res) {
     User.find({})
+      .populate({
+        path: "friends",
+        select: "-__v",
+      })
+      .populate({
+        path: "thoughts",
+        select: "-__V",
+      })
       .select("-__V")
       .sort({ _id: -1 })
       .then((UsersDb) => res.json(UsersDb))
       .catch((err) => {
         console.log(err);
-        res.sendStatus(500);
+        res.sendStatus(400);
       });
   },
 
@@ -56,14 +64,10 @@ const userController = {
   },
   // update (put) individual user by id
   updateUser({ params, body }, res) {
-    User.findOneAndUpdate(
-      { _id: params.id },
-      body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    )
+    User.findOneAndUpdate({ _id: params.id }, body, {
+      new: true,
+      runValidators: true,
+    })
       .then((UsersDb) => {
         if (!UsersDb) {
           return res
@@ -108,4 +112,4 @@ const userController = {
   },
 };
 
-module.exports = { userController };
+module.exports = userController;
