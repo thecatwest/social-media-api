@@ -1,3 +1,4 @@
+const { urlToHttpOptions } = require('http');
 const { Schema, model, Types } = require('mongoose');
 dateFormat = require('../utils/dateFormat');
 
@@ -56,3 +57,13 @@ const ReactionSchema = new Schema(
         id: false
     }
 );
+
+// retrieve length of array of reactions to thougths using virtual
+ThoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+});
+
+// create model from schema
+const Thought = model('Thought', ThoughtSchema);
+
+module.exports - Thought;
