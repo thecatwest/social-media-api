@@ -28,3 +28,31 @@ const ThoughtSchema = new Schema(
     }
 );
 
+const ReactionSchema = new Schema(
+    {
+        reactionId: {
+            objectId
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            min: 1,
+            max: 280
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: createdValue => dateFormat(createdValue)
+        }
+    },
+    {
+        toJSON: {
+            getters: true
+        },
+        id: false
+    }
+);
