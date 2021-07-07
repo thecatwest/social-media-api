@@ -1,4 +1,6 @@
-const router = require("express").Router();
+// const router = require("express").Router();
+var express = require('express');
+var router = express.Router();
 
 const {
     getAllUsers,

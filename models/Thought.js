@@ -1,6 +1,8 @@
 
 const { Schema, model, Types } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+var express = require('express');
+var router = express.Router();
 
 // must go before ThoughtSchema or ThoughtSchema will be unable to access ReactionSchema
 const ReactionSchema = new Schema(
@@ -67,4 +69,4 @@ ThoughtSchema.virtual('reactionCount').get(function() {
 // create model from schema
 const Thought = model('Thought', ThoughtSchema);
 
-module.exports - { Thought };
+module.exports - { Thought, ReactionSchema, router };

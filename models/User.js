@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+var express = require('express');
+var router = express.Router();
 
 const UserSchema = new Schema({
   username: {
@@ -42,4 +44,4 @@ UserSchema.virtual('friendCount').get(function() {
 // create model from schema
 const User = model('User', UserSchema);
 
-module.exports = User;
+module.exports = { router, User };
